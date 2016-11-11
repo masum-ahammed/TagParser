@@ -1,0 +1,10 @@
+packages
+[Bb]in
+[Dd]ebug*/
+obj/
+*.suo
+*.user
+*.aps
+.vs*/
+
+*.dll
