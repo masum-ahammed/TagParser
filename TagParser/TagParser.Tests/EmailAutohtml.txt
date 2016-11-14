@@ -4,12 +4,12 @@
 <h3> THE MODULE TAGGED</h3>
 <table width="500" border="0" cellpadding="2" cellspacing="2" style="background-color:<EA_THEME default="FC9">Module 1 Orange</EA_THEME>">
   <tr>
-    <td width="235" valign="top"><img src="<EA_IMG default='http://cssslider.com/sliders/demo-5/data1/images/road_forest_trees_tree_trip_nature_leaves_season.jpg'>List Image</EA_IMG>" width="235" height="136" alt="ED" /></td>
+    <td width="235" valign="top"><img src="<EA_IMG name='List Image'>http://cssslider.com/sliders/demo-5/data1/images/road_forest_trees_tree_trip_nature_leaves_season.jpg</EA_IMG>" width="235" height="136" alt="ED" /></td>
     <td width="362" valign="top"><EA_TXT name='product name'>Lorem Ipsum is simply dummy text of the printing and   typesetting industry. Lorem Ipsum has been the industry's standard dummy   text ever since the 1500s</EA_TXT></td>
   </tr>
   <tr>
     <td bgcolor="#FFFFFF" style="color:#0085c3"><strong>Bundle X230 Rate</strong></td>
-    <td rowspan="3" align="center" valign="bottom"><img src="<EA_IMG default='http://logos-download.com/wp-content/uploads/2016/02/Intel_logo_png_transparent_huge-700x464.png'>List Image</EA_IMG>" width="104" height="68" /></td>
+    <td rowspan="3" align="center" valign="bottom"><img src="<EA_IMG name='List Image'>http://logos-download.com/wp-content/uploads/2016/02/Intel_logo_png_transparent_huge-700x464.png</EA_IMG>" width="104" height="68" /></td>
   </tr>
   <tr bgcolor="#FF9900">
     <td><strong><EA_TXT default='The name of product'>Product Name</EA_TXT></strong></td>
@@ -26,8 +26,8 @@
   <table width="500"  style="background-color:#FC6">
   <EA_LIST name="EAList">
 	  <tr style ="background-color:#CCC;">
-			<td width="50"> <img width ="100" src="<EA_IMG default='http://icdn8.digitaltrends.com/image/nextbook-14-windows-laptop-640x0.jpg'>List Image</EA_IMG>"/> </td>
-			<td><EA_TXT default='Item 1 of List'>Product Name</EA_TXT> </td>
+			<td width="50"> <img width ="100" src="<EA_LIST_IMG default='List Image'>http://icdn8.digitaltrends.com/image/nextbook-14-windows-laptop-640x0.jpg</EA_LIST_IMG>"/> </td>
+			<td><EA_LIST_TXT default='Item 1 of List'>Product Name</EA_LIST_TXT> </td>
 	  </tr>
   </EA_LIST>
   </table>

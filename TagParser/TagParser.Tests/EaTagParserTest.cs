@@ -7,21 +7,21 @@ using TagParser.Lib.TagParser;
 namespace TagParser.Tests
 {
     [TestClass]
-    public class EmailAutoImageTagParserTest
+    public class EaTagParserTest
     {
         string _Html;
         ITagParser _TagParser;
         [TestInitialize]
         public void Init()
         {
-            _TagParser = new EmailAutoImageTagParser();
+            _TagParser = new EaImageTagParser();
             _Html = File.ReadAllText("..\\..\\EmailAutohtml.txt");
             
         }
         [TestMethod]
-        public void ShouldReturn4ImageTags()
+        public void ShouldReturnListOfImageTags()
         {
-            Assert.AreEqual<int>(_TagParser.Parse(_Html).Count,4);
+            Assert.IsTrue(_TagParser.Parse(_Html).Count> 0);
 
         }
 

@@ -46,11 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HtmlContent.cs" />
+    <Compile Include="Model\EaTextTag.cs" />
+    <Compile Include="Model\EaImageTag.cs" />
+    <Compile Include="Model\HtmlTagContent.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\TagEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegularExpressionUtility.cs" />
-    <Compile Include="TagParser\EmailAutoImageTagParser.cs" />
+    <Compile Include="Utility\RegularExpressionUtility.cs" />
+    <Compile Include="TagParser\EaImageTagParser.cs" />
     <Compile Include="TagParser\ITagParser.cs" />
   </ItemGroup>
   <ItemGroup>

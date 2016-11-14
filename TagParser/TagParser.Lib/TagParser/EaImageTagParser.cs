@@ -5,10 +5,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TagParser.Lib.Model;
+using TagParser.Lib.Utility;
 
 namespace TagParser.Lib.TagParser
 {
-    public class EmailAutoImageTagParser : ITagParser
+    public class EaImageTagParser : ITagParser
     {
         public List<Tag> Parse(string content)
         {
@@ -17,11 +18,12 @@ namespace TagParser.Lib.TagParser
             MatchCollection matches = RegularExpressionUtility.GetMaches(pattern, content);
             foreach (Match match in matches)
             {
-                tags.Add(Tag.CreateNew(match,TagEnum.EA_IMG.ToString()));
+                HtmlTagContent htmlTagContent = new HtmlTagContent(match.Value);
+                tags.Add(new EaImageTag(htmlTagContent,match.Index, match.Length));
             }
             return tags;
         }
 
-       
+
     }
 }

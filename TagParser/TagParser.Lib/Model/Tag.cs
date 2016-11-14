@@ -8,34 +8,30 @@ using System.Threading.Tasks;
 
 namespace TagParser.Lib.Model
 {
-    public  class Tag
+    public abstract class Tag
     {
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public string DefaultValue { get; set; }
-        public int Index { get; set; }
-        public int Length { get; set; }
-        public string Content  { get; set; }
-
-        public static Tag CreateNew(Match match, string type)
+        string _Type;
+        HtmlTagContent _HtmlContent;
+        int _Index;
+        int _Length;
+        public Tag(TagEnum type, HtmlTagContent htmlContent, int index, int length)
         {
-            Tag tag = new Tag();
-            tag.Type = type;
-            tag.Index = match.Index;
-            tag.Length = match.Length;
-            tag.Content = match.Value;
-            HtmlNode node = ConvertToHtmlNode(tag.Content);
-            tag.DefaultValue = node.InnerHtml;
-            tag.Name = node.Attributes["name"]?.Value ?? string.Empty;
-            return tag;
+            if (htmlContent == null)
+            {
+                throw new ArgumentNullException("tag content html is not defined.");
+            }
+            _Type = Enum.GetName(typeof(TagEnum),type);
+            _HtmlContent = htmlContent;
+            _Index = index;
+            _Length = length;
         }
+        public string Name { get { return _HtmlContent.GetAttributeValueByName("name"); } }
+        public string Type { get { return _Type; } }
+        public string DefaultValue { get { return _HtmlContent.InnerHtml; } }
+        public int Index { get { return _Index; } }
+        public int Length { get { return _Length; } }
+        public List<Tag> Childern { get; set; }
 
-        private static HtmlNode ConvertToHtmlNode(string tagContent)
-        {
-            HtmlDocument tagDocument = new HtmlDocument();
-            tagDocument.LoadHtml(tagContent);
-            HtmlNode node = tagDocument.DocumentNode.FirstChild;
-            return node;
-        }
+
     }
 }

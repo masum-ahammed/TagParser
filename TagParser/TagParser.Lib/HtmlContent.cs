@@ -46,7 +46,7 @@ namespace TagParser.Lib
         private List<ITagParser> RegisterTagParser()
         {
             List<ITagParser> tagParsers = new List<ITagParser>();
-            tagParsers.Add(new EmailAutoImageTagParser());
+            tagParsers.Add(new EaImageTagParser());
             return tagParsers;
         }
     }
