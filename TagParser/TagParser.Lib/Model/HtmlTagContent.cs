@@ -12,16 +12,18 @@ namespace TagParser.Lib.Model
     {
         string _TagContent;
         HtmlNode _Node;
+        HtmlDocument _TagDocument;
         public HtmlTagContent( string tagContent)
         {
             _TagContent = tagContent;
             _Node = ConvertToHtmlNode(_TagContent);
         }
-        private static HtmlNode ConvertToHtmlNode(string tagContent)
+        private HtmlNode ConvertToHtmlNode(string tagContent)
         {
-            HtmlDocument tagDocument = new HtmlDocument();
-            tagDocument.LoadHtml(tagContent);
-            HtmlNode node = tagDocument.DocumentNode.FirstChild;
+            _TagDocument = new HtmlDocument();
+            _TagDocument.LoadHtml(tagContent);
+            HtmlNode node = _TagDocument.DocumentNode.FirstChild;
+
             return node;
         }
 
@@ -30,7 +32,13 @@ namespace TagParser.Lib.Model
 
         public  string GetAttributeValueByName(string attributeName)
         {
-            return _Node.Attributes[attributeName]?.Value ?? string.Empty;
+            return _Node.Attributes[attributeName]?.Value ;
         }
+
+        public List<ParseError> GetParseErrors()
+        {
+           return  _TagDocument.ParseErrors.Select(x =>new ParseError() { Reason = x.Reason}).ToList();
+        }
+        
     }
 }

@@ -7,7 +7,7 @@ using TagParser.Lib.TagParser;
 namespace TagParser.Tests
 {
     [TestClass]
-    public class EaTagParserTest
+    public class EaImgTagParserTest
     {
         string _Html;
         ITagParser _TagParser;
@@ -19,12 +19,17 @@ namespace TagParser.Tests
             
         }
         [TestMethod]
-        public void ShouldReturnListOfImageTags()
+        public void ShouldReturnTwoImageTags()
         {
-            Assert.IsTrue(_TagParser.Parse(_Html).Count> 0);
-
+            Assert.AreEqual(_TagParser.Parse(_Html).Count,3);
         }
 
-        
+        [TestMethod]
+        public void StartTagMissing_ReturnsOnlyValidTags()
+        {
+            _Html = File.ReadAllText("..\\..\\EaImgInvalidSyntex.txt");
+            Assert.AreEqual(_TagParser.Parse(_Html).Count, 2);
+        }
+
     }
 }

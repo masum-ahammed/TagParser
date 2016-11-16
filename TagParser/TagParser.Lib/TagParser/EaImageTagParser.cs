@@ -14,7 +14,7 @@ namespace TagParser.Lib.TagParser
         public List<Tag> Parse(string content)
         {
             List<Tag> tags = new List<Tag>();
-            string pattern = "<EA_IMG.+EA_IMG>";
+            string pattern = "<EA_IMG(.*)EA_IMG>";
             MatchCollection matches = RegularExpressionUtility.GetMaches(pattern, content);
             foreach (Match match in matches)
             {

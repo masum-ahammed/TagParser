@@ -80,7 +80,7 @@ namespace TagParser.Tests
         {
             string tagContent = @"<EA_TXT>#FFFFFF</EA_TXT>";
             Tag tag = new EaTextTag(new HtmlTagContent(tagContent), 0, tagContent.Length);
-            Assert.AreEqual(string.Empty, tag.Name);
+            Assert.AreEqual(null, tag.Name);
         }
 
         [TestMethod]
@@ -100,11 +100,43 @@ namespace TagParser.Tests
         }
 
         [TestMethod]
-        public void EA_TEXT_ShouldShowError()
+        public void EA_TEXT_ShouldShowParseError()
         {
             string tagContent = @"<EA_TXT name='Module 1 Orange'>";
             Tag tag = new EaTextTag(new HtmlTagContent(tagContent), 0, tagContent.Length);
-            Assert.AreEqual(string.Empty, tag.DefaultValue);
+            Assert.IsTrue(tag.ParseErrors.Count > 0);
+        }
+
+        [TestMethod]
+        public void EA_TEXT_TagTypeShouldBe_EATXT()
+        {
+            string tagContent = @"<EA_TXT name='Module 1 Orange'></EA_TXT>";
+            Tag tag = new EaTextTag(new HtmlTagContent(tagContent), 0, tagContent.Length);
+            Assert.AreEqual(tag.Type,"EA_TXT");
+        }
+
+        [TestMethod]
+        public void EA_TEXT_ShouldnotBeAnyChildren()
+        {
+            string tagContent = @"<EA_TXT name='Module 1 Orange'></EA_TXT>";
+            Tag tag = new EaTextTag(new HtmlTagContent(tagContent), 0, tagContent.Length);
+            Assert.IsNull(tag.Childern);
+        }
+
+        [TestMethod]
+        public void EA_TEXT_IdParsedSuccessully_123()
+        {
+            string tagContent = @"<EA_TXT id='123' name='Module 1 Orange'></EA_TXT>";
+            Tag tag = new EaTextTag(new HtmlTagContent(tagContent), 0, tagContent.Length);
+            Assert.AreEqual(tag.Id,"123");
+        }
+
+        [TestMethod]
+        public void EA_TEXT_ShouldBeGenerateNewIdWhenIdnotSpecified()
+        {
+            string tagContent = @"<EA_TXT  name='Module 1 Orange'></EA_TXT>";
+            Tag tag = new EaTextTag(new HtmlTagContent(tagContent), 0, tagContent.Length);
+            Assert.IsTrue(tag.Id.Length > 10);
         }
     }
 }
