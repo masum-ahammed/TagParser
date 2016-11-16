@@ -10,9 +10,9 @@ namespace TagParser.Tests
     /// Summary description for TagTest
     /// </summary>
     [TestClass]
-    public class TagTest
+    public class EaTxtTagTest
     {
-        public TagTest()
+        public EaTxtTagTest()
         {
             //
             // TODO: Add constructor logic here
@@ -137,6 +137,23 @@ namespace TagParser.Tests
             string tagContent = @"<EA_TXT  name='Module 1 Orange'></EA_TXT>";
             Tag tag = new EaTextTag(new HtmlTagContent(tagContent), 0, tagContent.Length);
             Assert.IsTrue(tag.Id.Length > 10);
+        }
+
+        [TestMethod]
+        public void EA_TEXT_ToHtmlReturnsShouldContainIdAttribute()
+        {
+            string tagContent = @"<EA_TXT  name='Module 1 Orange'></EA_TXT>";
+            Tag tag = new EaTextTag(new HtmlTagContent(tagContent), 0, tagContent.Length);
+            Assert.IsTrue(tag.ToHtml().Contains("id"));
+        }
+
+        [TestMethod]
+        public void EA_TEXT_ToHtmlReturnHtmlWithGeneratedId()
+        {
+            string tagContent = @"<EA_TXT  name='Module 1 Orange'>xyz</EA_TXT>";
+            Tag tag = new EaTextTag(new HtmlTagContent(tagContent), 0, tagContent.Length);
+            tag.Id = "xyz-123";
+            Assert.AreEqual(tag.ToHtml(), @"<ea_txt name='Module 1 Orange' id='xyz-123'>xyz</ea_txt>");
         }
     }
 }

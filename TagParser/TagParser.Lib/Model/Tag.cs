@@ -22,13 +22,22 @@ namespace TagParser.Lib.Model
             {
                 throw new ArgumentNullException("tag content html is not defined.");
             }
-            _Type = Enum.GetName(typeof(TagEnum),type);
+            _Type = Enum.GetName(typeof(TagEnum), type);
             _HtmlContent = htmlContent;
             _Index = index;
             _Length = length;
-            _Id = htmlContent.GetAttributeValueByName("id") ?? IdGenerator.GenerateNewId();
+            _Id = htmlContent.GetAttributeValueByName("id") ?? Guid.NewGuid().ToString();
+            _HtmlContent.SetId(_Id);
         }
-        public string Id { get { return _Id; } }
+        public string Id
+        {
+            get { return _Id; }
+            set
+            {
+                _Id = value;
+                _HtmlContent.SetId(_Id);
+            }
+        }
         public string Name { get { return _HtmlContent.GetAttributeValueByName("name"); } }
         public string Type { get { return _Type; } }
         public string DefaultValue { get { return _HtmlContent.InnerHtml; } }
@@ -37,6 +46,11 @@ namespace TagParser.Lib.Model
         public List<Tag> Childern { get; set; }
 
         public List<ParseError> ParseErrors { get { return _HtmlContent.GetParseErrors(); } }
+
+        public string ToHtml()
+        {
+            return _HtmlContent.ToHtml();
+        }
 
 
     }

@@ -53,10 +53,10 @@
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Model\TagEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagParser\ITagParser.cs" />
     <Compile Include="Utility\IdGenerator.cs" />
     <Compile Include="Utility\RegularExpressionUtility.cs" />
     <Compile Include="TagParser\EaImageTagParser.cs" />
-    <Compile Include="TagParser\ITagParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

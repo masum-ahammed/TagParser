@@ -33,6 +33,13 @@ namespace TagParser.Lib
             }
         }
 
+        //public string GetIdGeneratedHtml()
+        //{
+        //    foreach (var tag in GetAllTags())
+        //    {
+        //        //_HtmlContent.Replace(string.)
+        //    }
+        //}
         private List<Tag> GetAllTags()
         {
             List<Tag> tags = new List<Tag>();

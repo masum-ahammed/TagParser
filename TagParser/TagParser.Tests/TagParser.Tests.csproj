@@ -53,7 +53,7 @@
     <Compile Include="EaImgTagParserTest.cs" />
     <Compile Include="EmailAutoHtmlDocumentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TagTest.cs" />
+    <Compile Include="EaTxtTagTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TagParser.Lib\TagParser.Lib.csproj">
