@@ -26,6 +26,9 @@ namespace TagParser.Lib
         }
         public string Content { get { return _HtmlContent; } }
 
+        /// <summary>
+        /// Returns all custom tags
+        /// </summary>
         public List<Tag> AllTags {
             get
             {
@@ -33,13 +36,30 @@ namespace TagParser.Lib
             }
         }
 
-        //public string GetIdGeneratedHtml()
-        //{
-        //    foreach (var tag in GetAllTags())
-        //    {
-        //        //_HtmlContent.Replace(string.)
-        //    }
-        //}
+        /// <summary>
+        /// Generates 'id' attribute for all tags
+        /// </summary>
+        public string ParsedHtml
+        {
+            get
+            {
+                return GetIdGeneratedHtml();
+            }
+        }
+
+        private string GetIdGeneratedHtml()
+        {
+            IList<Tuple<string,string>> tagContentReplaceList = new List<Tuple<string, string>>();
+            foreach (var tag in GetAllTags())
+            {
+                tagContentReplaceList.Add(new Tuple<string, string>( _HtmlContent.Substring(tag.Index, tag.Length), tag.ToHtml()));
+            }
+            foreach (var item in tagContentReplaceList)
+            {
+                _HtmlContent = _HtmlContent.Replace(item.Item1, item.Item2);
+            }
+            return _HtmlContent;
+        }
         private List<Tag> GetAllTags()
         {
             List<Tag> tags = new List<Tag>();
@@ -54,6 +74,7 @@ namespace TagParser.Lib
         {
             List<ITagParser> tagParsers = new List<ITagParser>();
             tagParsers.Add(new EaImageTagParser());
+            tagParsers.Add(new EaTxtTagParser());
             return tagParsers;
         }
     }

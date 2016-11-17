@@ -50,6 +50,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EaTxtTagParserTest.cs" />
     <Compile Include="EaImgTagParserTest.cs" />
     <Compile Include="EmailAutoHtmlDocumentTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

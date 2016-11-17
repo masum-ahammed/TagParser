@@ -10,13 +10,13 @@ namespace TagParser.Lib.Model
 {
     public class HtmlTagContent
     {
-        string _TagContent;
+        string _TagStringContent;
         HtmlNode _Node;
         HtmlDocument _TagDocument;
         public HtmlTagContent( string tagContent)
         {
-            _TagContent = tagContent;
-            _Node = ConvertToHtmlNode(_TagContent);
+            _TagStringContent = tagContent;
+            _Node = ConvertToHtmlNode(_TagStringContent);
         }
         private HtmlNode ConvertToHtmlNode(string tagContent)
         {
@@ -52,6 +52,7 @@ namespace TagParser.Lib.Model
             {
                 _Node.Attributes["id"].Value = value;
             }
+            _TagStringContent = ToHtml();
         }
 
         public List<ParseError> GetParseErrors()

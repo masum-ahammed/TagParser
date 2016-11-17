@@ -9,17 +9,17 @@ using TagParser.Lib.Utility;
 
 namespace TagParser.Lib.TagParser
 {
-    public class EaImageTagParser : ITagParser
+    public class EaTxtTagParser : ITagParser
     {
         public List<Tag> Parse(string content)
         {
             List<Tag> tags = new List<Tag>();
-            string pattern = "(<EA_IMG(.*)EA_IMG>)|(<ea_img(.*)ea_img>)";
+            string pattern = "(<EA_TXT(.*)EA_TXT>)|(<ea_txt(.*)ea_txt>)";
             MatchCollection matches = RegularExpressionUtility.GetMaches(pattern, content);
             foreach (Match match in matches)
             {
                 HtmlTagContent htmlTagContent = new HtmlTagContent(match.Value);
-                tags.Add(new EaImageTag(htmlTagContent,match.Index, match.Length));
+                tags.Add(new EaTextTag(htmlTagContent,match.Index, match.Length));
             }
             return tags;
         }
