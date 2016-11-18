@@ -9,19 +9,11 @@ using TagParser.Lib.Utility;
 
 namespace TagParser.Lib.TagParser
 {
-    public class EaTxtTagParser : ITagParser
+    public class EaTxtTagParser : AbstractTagParser
     {
-        public List<Tag> Parse(string content)
+        public override string GetRegExPattern()
         {
-            List<Tag> tags = new List<Tag>();
-            string pattern = "(<EA_TXT(.*)EA_TXT>)|(<ea_txt(.*)ea_txt>)";
-            MatchCollection matches = RegularExpressionUtility.GetMaches(pattern, content);
-            foreach (Match match in matches)
-            {
-                HtmlTagContent htmlTagContent = new HtmlTagContent(match.Value);
-                tags.Add(new EaTextTag(htmlTagContent,match.Index, match.Length));
-            }
-            return tags;
+            return "(<EA_TXT(.*)EA_TXT>)|(<ea_txt(.*)ea_txt>)";
         }
 
 

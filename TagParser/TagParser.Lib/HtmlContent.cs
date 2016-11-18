@@ -10,20 +10,31 @@ namespace TagParser.Lib
 {
     public class HtmlContent
     {
-        List<ITagParser> _TagParsers;
+        List<AbstractTagParser> _TagParsers;
         string _HtmlContent;
-
+        List<string> _TagTypes;
         
 
-        public HtmlContent(string html)
+        public HtmlContent(string html,string allowedTags)
+        {
+            InitContent(html, allowedTags);
+        }
+
+        private void InitContent(string html, string allowedTags)
         {
             if (string.IsNullOrEmpty(html))
             {
-                throw new ArgumentException("Html should not be null");
+                throw new ArgumentException("Html should not be empty");
             }
+            if (string.IsNullOrEmpty(allowedTags))
+            {
+                throw new ArgumentException("AllowedTags should not be empty");
+            }
+            _TagTypes = allowedTags.Split(",".ToCharArray(),StringSplitOptions.RemoveEmptyEntries).ToList();
             _TagParsers = RegisterTagParser();
             _HtmlContent = html;
         }
+
         public string Content { get { return _HtmlContent; } }
 
         /// <summary>
@@ -47,6 +58,7 @@ namespace TagParser.Lib
             }
         }
 
+      
         private string GetIdGeneratedHtml()
         {
             IList<Tuple<string,string>> tagContentReplaceList = new List<Tuple<string, string>>();
@@ -70,11 +82,20 @@ namespace TagParser.Lib
             return tags;
         }
 
-        private List<ITagParser> RegisterTagParser()
+        private List<AbstractTagParser> RegisterTagParser()
         {
-            List<ITagParser> tagParsers = new List<ITagParser>();
-            tagParsers.Add(new EaImageTagParser());
-            tagParsers.Add(new EaTxtTagParser());
+            List<AbstractTagParser> tagParsers = new List<AbstractTagParser>();
+            foreach (var type in _TagTypes)
+            {
+                TagEnum tagType;
+                Enum.TryParse<TagEnum>(type.ToUpper(), out tagType);
+                AbstractTagParser tagParser = TagParserFactory.GetParser(tagType);
+                if(tagParser != null)
+                {
+                    tagParsers.Add(tagParser);
+                }
+            }
+           
             return tagParsers;
         }
     }

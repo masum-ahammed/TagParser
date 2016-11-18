@@ -10,7 +10,7 @@ namespace TagParser.Tests
     public class EaImgTagParserTest
     {
         string _Html;
-        ITagParser _TagParser;
+        AbstractTagParser _TagParser;
         [TestInitialize]
         public void Init()
         {

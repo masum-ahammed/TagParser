@@ -9,13 +9,16 @@ using TagParser.Lib.Utility;
 
 namespace TagParser.Lib.TagParser
 {
-    public class EaImageTagParser : AbstractTagParser
+    public class EaListTagParser : AbstractTagParser
     {
-        
+      
+
         public override string GetRegExPattern()
         {
-            return "(<EA_IMG(.*)EA_IMG>)|(<ea_img(.*)ea_img>)";
+            return "(<EA_LIST((.|\n)*)EA_LIST>)|(<ea_list((.|\n)*)ea_list>)";
         }
+
+
 
     }
 }

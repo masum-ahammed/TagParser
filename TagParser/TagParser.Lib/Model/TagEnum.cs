@@ -8,7 +8,8 @@ namespace TagParser.Lib.Model
 {
     public enum TagEnum
     {
-        EA_IMG =1,
-        EA_TXT = 2
+        EA_IMG = 1,
+        EA_TXT = 2,
+        EA_LIST= 3
     }
 }

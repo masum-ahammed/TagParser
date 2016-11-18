@@ -1,5 +1,5 @@
 <style>
- td{ color: <EA_THM name='Module 1 Orange'>#FFFFFF</EA_THM>}
+ td{ color: <EA_THEME name='Module 1 Orange'>#FFFFFF</EA_THEME>}
 </style>
 <h3> THE MODULE TAGGED</h3>
 <table width="500" border="0" cellpadding="2" cellspacing="2" style="background-color:<EA_THEME default="FC9">Module 1 Orange</EA_THEME>">

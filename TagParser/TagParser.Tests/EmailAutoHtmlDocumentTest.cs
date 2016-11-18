@@ -17,13 +17,13 @@ namespace TagParser.Tests
         public void Init()
         {
             _Html = File.ReadAllText("..\\..\\EmailAutohtml.txt");
-            _HtmlContent = new HtmlContent(_Html);
+            _HtmlContent = new HtmlContent(_Html,"ea_txt,EA_IMG");
         }
         [TestMethod]
         public void HtmlContentShouldnotBeNull()
         {
             Assert.IsNotNull(_HtmlContent.Content);
-
+            
         }
 
         [TestMethod]
@@ -31,7 +31,17 @@ namespace TagParser.Tests
         "Html should not be null")]
         public void NullHtmlContentShouldThrowException()
         {
-            _HtmlContent = new HtmlContent(null);
+            _HtmlContent = new HtmlContent(null,string.Empty);
+            Assert.IsNull(_HtmlContent.Content);
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException),
+            "AllowedTags should not be empty")]
+        public void BlankAllowedTagsShouldThrowException()
+        {
+            _HtmlContent = new HtmlContent(_Html, string.Empty);
             Assert.IsNull(_HtmlContent.Content);
 
         }

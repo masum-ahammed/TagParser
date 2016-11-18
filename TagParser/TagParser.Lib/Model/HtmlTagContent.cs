@@ -28,7 +28,6 @@ namespace TagParser.Lib.Model
         }
 
         public string InnerHtml { get { return _Node.InnerHtml; } }
-      
 
         public  string GetAttributeValueByName(string attributeName)
         {
